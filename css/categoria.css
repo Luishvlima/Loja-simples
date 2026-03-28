@@ -1,0 +1,76 @@
+/* 
+==========================================================================
+   BLOCO: CATEGORY CARD  (.category-card)
+   Cards de categoria com ícone, nome e quantidade de produtos.
+   A seta ↗ se move no hover indicando navegação.
+========================================================================== 
+*/
+
+/* Grid de categorias: 3 colunas */
+.categoria-grade {
+  display:               grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:                   2px;
+}
+
+/* Card de categoria: comporta-se como link (tag <a>) */
+.categoria-cartao {
+  background:      var(--color-surface);
+  padding:         var(--space-12) var(--space-9);
+  position:        relative; /* Para a seta e texto de fundo serem posicionados */
+  overflow:        hidden;
+  cursor:          pointer;
+  text-decoration: none;  /* Remove sublinhado do link */
+  color:           inherit; /* Herda a cor do texto pai (sem o azul padrão de links) */
+  display:         block;   /* Ocupa toda a célula do grid */
+  transition:      background var(--transition-slow);
+}
+
+.categoria-cartao:hover { background: var(--color-surface-2); }
+
+/* Move a seta na diagonal no hover — feedback visual de navegação */
+.categoria-cartao:hover .categoria-cartao__flecha {
+  transform: translate(4px, -4px);
+}
+
+.categoria-cartao__icone {
+  font-size:     3rem;
+  margin-bottom: var(--space-5);
+  display:       block; /* Garante que o margin-bottom funcione */
+}
+
+.categoria-cartao__name {
+  font-family:    var(--font-display);
+  font-size:      var(--text-3xl);
+  letter-spacing: var(--tracking-normal);
+  margin-bottom:  var(--space-2);
+}
+
+.categoria-cartao__count {
+  font-size:      var(--text-xs);
+  color:          var(--color-muted);
+  letter-spacing: var(--tracking-wide);
+}
+
+/* Seta posicionada no canto superior direito */
+.categoria-cartao__flecha {
+  position:   absolute;
+  top:        var(--space-9);
+  right:      var(--space-9);
+  font-size:  1.5rem;
+  color:      var(--color-muted);
+  transition: transform var(--transition-slow);
+}
+
+/* Texto decorativo gigante no fundo do card — quase invisível */
+.categoria-cartao__grandetexto {
+  position:       absolute;
+  bottom:         -10px;
+  right:          -10px;
+  font-family:    var(--font-display);
+  font-size:      5rem;
+  color:          rgba(255,255,255,0.02);
+  user-select:    none;
+  pointer-events: none;
+  line-height:    1;
+}

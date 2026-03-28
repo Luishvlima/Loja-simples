@@ -1,0 +1,60 @@
+/* SEÇÃO */
+.secao {
+  padding: 96px 48px;
+}
+
+.secao + .secao {
+  padding-top: 0;
+}
+
+.secao__cabecalho {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 56px;
+}
+
+.secao__titulo {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.secao__titulo--h1 {
+  font-size: clamp(3rem, 5vw, 5rem);
+}
+
+.secao__titulo--h2 {
+  font-size: clamp(2.5rem, 4vw, 4rem);
+}
+
+.secao__titulo--h3 {
+  font-size: clamp(2rem, 3vw, 3rem);
+}
+
+.secao__titulo-subtexto {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.secao__link {
+  color: #666;
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #222;
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.secao__link:hover {
+  color: #f0f0f0;
+  border-color: #f0f0f0;
+}

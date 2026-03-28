@@ -1,0 +1,111 @@
+/* GRADE DE PRODUTOS */
+.grade-produtos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.cartao-produto {
+  background: #111;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.cartao-produto:hover { 
+  transform: translateY(-4px); 
+}
+
+.cartao-produto__midia {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1a1a;
+  position: relative;
+  overflow: hidden;
+}
+
+.cartao-produto__icone {
+  font-size: 4.5rem;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s;
+}
+
+.cartao-produto:hover .cartao-produto__icone { 
+  transform: scale(1.08); 
+}
+
+.cartao-produto__sobreposicao {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 20px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.cartao-produto:hover .cartao-produto__sobreposicao { 
+    opacity: 1; 
+}
+
+.cartao-produto__sobreposicao-botao {
+  background: #e8ff00;
+  color: #000;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cartao-produto__sobreposicao-botao:hover { 
+  background: #fff; 
+}
+
+.cartao-produto__corpo {
+  padding: 20px;
+}
+
+.cartao-produto__categoria {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.cartao-produto__nome {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.cartao-produto__rodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cartao-produto__preco {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #f0f0f0;
+}
+
+.cartao-produto__preco--antigo {
+  font-size: 0.8rem;
+  color: #666;
+  text-decoration: line-through;
+  margin-left: 8px;
+}

@@ -1,0 +1,63 @@
+/* BOTÕES */
+.botao {
+  display: inline-block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  padding: 16px 40px;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.botao--primario {
+  background: #e8ff00;
+  color: #000;
+}
+
+.botao--primario:hover {
+  background: #fff;
+  transform: translateY(-2px);
+}
+
+.botao--contorno {
+  background: transparent;
+  color: #666;
+  border: 1px solid #222;
+}
+
+.botao--contorno:hover {
+  border-color: #f0f0f0;
+  color: #f0f0f0;
+}
+
+.botao--entrar {
+  padding: 8px 20px;
+  font-size: 0.65rem;
+  background: #e8ff00;
+  color: #000;
+}
+
+.botao--entrar:hover {
+  background: #fff200;
+  transform: translateY(-2px);
+}
+
+.botao--cadastrar {
+  padding: 8px 20px;
+  font-size: 0.65rem;
+  background: #eaff00;
+  color: #000;
+}
+
+.botao--cadastrar:hover {
+  background: #fff200;
+  transform: translateY(-2px);
+}
+
+.botao--pequeno:hover {
+  background: #fff;
+}

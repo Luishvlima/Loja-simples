@@ -1,0 +1,36 @@
+/* RESET BÁSICO */
+*, *::before, *::after {
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+}
+
+:root {
+  --color-surface: #111;
+  --color-surface-2: #1a1a1a;
+  --color-muted: #666;
+
+  --space-2: 8px;
+  --space-5: 20px;
+  --space-9: 36px;
+  --space-12: 48px;
+
+  --text-xs: 0.75rem;
+  --text-3xl: 2rem;
+
+  --tracking-normal: 0.02em;
+  --tracking-wide: 0.1em;
+
+  --font-display: 'Bebas Neue', sans-serif;
+
+  --transition-slow: 0.3s ease;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: #0a0a0a;
+  color: #f0f0f0;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+}
