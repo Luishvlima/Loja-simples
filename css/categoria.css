@@ -9,8 +9,8 @@
 /* Grid de categorias: 3 colunas */
 .categoria-grade {
   display:               grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap:                   2px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap:                   10px;
 }
 
 /* Card de categoria: comporta-se como link (tag <a>) */
