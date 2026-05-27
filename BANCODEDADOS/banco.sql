@@ -1,0 +1,9 @@
+CREATE DATABASE IF NOT EXISTS cadastrophp;
+
+USE cadastrophp;
+
+CREATE TABLE IF NOT EXISTS usuarios (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(140) NOT NULL,
+    senha VARCHAR(255)
+);
