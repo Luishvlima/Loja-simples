@@ -1,0 +1,49 @@
+.auth-menu {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.auth-menu__botao {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  color: #000;
+}
+
+.auth-menu__dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 180px;
+  padding: 8px;
+  border-radius: 14px;
+  background: rgba(10, 10, 14, 0.96);
+  border: 1px solid rgba(223, 255, 0, 0.18);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  display: none;
+  z-index: 50;
+}
+
+.auth-menu.is-open .auth-menu__dropdown {
+  display: block;
+}
+
+.auth-menu__logout {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.auth-menu__logout:hover {
+  background: rgba(223, 255, 0, 0.12);
+}
+
+.auth-menu__nome {
+  display: inline-flex;
+  align-items: center;
+  /* gap: 8px; */
+  color: #000;
+}

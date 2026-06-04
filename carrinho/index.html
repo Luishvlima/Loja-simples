@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Carrinho — Technoblade</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/botao.css">
+  <link rel="stylesheet" href="../css/rodape.css">
+  <link rel="stylesheet" href="../css/auth_menu.css">
+  <style>
+    .carrinho__container{max-width:1000px;margin:32px auto;padding:0 16px}
+    .carrinho__item{display:flex;align-items:center;justify-content:space-between;padding:12px;border-bottom:1px solid #e6e6e6}
+    .carrinho__info{display:flex;align-items:center;gap:12px}
+    .carrinho__icone{font-size:28px}
+    .carrinho__nome{font-weight:600}
+    .carrinho__quant{display:flex;align-items:center;gap:8px}
+    .carrinho__total{margin-top:16px;text-align:right;font-size:20px;font-weight:700}
+    .carrinho__vazio{text-align:center;padding:48px;color:#666}
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="barra-nav">
+      <a href="../" class="barra-nav__logo">Technoblade</a>
+      <div class="barra-nav__acoes">
+        <a href="../" class="botao botao--entrar">Voltar à loja</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="carrinho__container">
+    <h1>Meu Carrinho</h1>
+    <div id="listaCarrinho"></div>
+    <div id="totalCarrinho" class="carrinho__total"></div>
+  </main>
+
+  <footer id="rodape"></footer>
+
+  <script src="../js/carrinho.js"></script>
+  <script src="../js/auth-ui.js?v=1"></script>
+</body>
+</html>

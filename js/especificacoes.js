@@ -16,6 +16,7 @@ async function carregarEspecificacoes() {
         }
 
         catalogo = await resposta.json();
+        window.__catalogoLookup = catalogo;
 
         const params = new URLSearchParams(window.location.search);
         const slug = params.get('produto') || [...params.keys()][0];
@@ -61,11 +62,24 @@ async function carregarEspecificacoes() {
                     '<h2 class="specs__subtitulo">Especificações Técnicas</h2>' +
                     '<table class="specs__tabela"><tbody>' + linhas + '</tbody></table>' +
                     '<div class="specs__acoes">' +
-                        '<button class="specs__btn-primario">🛒 Adicionar ao Carrinho</button>' +
+                        '<button id="btnAdicionarCarrinho" class="specs__btn-primario" type="button">🛒 Adicionar ao Carrinho</button>' +
                         '<button class="specs__btn-secundario">⚡ Comprar Agora</button>' +
                     '</div>' +
                 '</div>' +
             '</div>';
+
+        const botaoCarrinho = document.getElementById('btnAdicionarCarrinho');
+        if (botaoCarrinho) {
+            botaoCarrinho.addEventListener('click', async function() {
+                try {
+                    await window.carrinhoAPI.adicionarAoCarrinho(slug, catalogo[slug], 1);
+                    alert('Adicionado ao carrinho');
+                } catch (erro) {
+                    console.error(erro);
+                    alert('Não foi possível adicionar ao carrinho');
+                }
+            });
+        }
     } 
     catch (erro) {
         console.error(erro);

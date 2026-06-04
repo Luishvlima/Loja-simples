@@ -1,25 +1,91 @@
-.busca__wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
+.cabecalho{
+    width:100%;
+    background:#000;
+    color:white;
 }
 
-.busca__input {
-    width: 0;
-    padding: 0;
-    background: #111;
+.topo{
+    display:flex;
+    justify-content:flex-end;
+    gap:20px;
+    padding:10px 10px;
+    height: 20px;
+}
+
+.topo a{
+    color:white;
+    text-decoration:none;
+}
+
+.principal{
+    display:flex;
+    align-items:center;
+    padding:30px 30px;
+    gap:30px;
+    border-bottom:2px solid #e8ff00;
+}
+
+.logo{
+    font-size:32px;
+    font-weight:bold;
+}
+
+.centro{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.categorias{
+    display:flex;
+    justify-content:center;
+    gap:50px;
+}
+
+.categorias a{
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+
+}
+
+.carrinho{
+    font-size:30px;
+}
+
+
+.busca{
+    display:flex;
+    color:white;
+    position:relative;
+}
+
+.busca__input{
+    flex:1;
+    padding:12px;
+    background:#1a1a1a;
+    border:none;
+    outline:none;
+    overflow: hidden;
+    color:white;
+    border-radius: 15px;
     border: 1px solid transparent;
-    border-radius: 8px;
-    color: #fff;
     font-family: 'DM Sans', sans-serif;
     font-size: 0.85rem;
-    outline: none;
-    overflow: hidden;
     transition: width 0.3s ease, padding 0.3s ease, border-color 0.3s ease;
+
 }
 
-.busca__input::placeholder {
-    color: #444;
+/* Nome no fundo */
+.busca__input::placeholder{
+    color: white;
+    opacity: 0.8;
+}
+
+.busca__input:focus{
+    outline:none;
+    border-color: #DFFF00;
 }
 
 .busca__sugestoes {

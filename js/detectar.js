@@ -4,6 +4,7 @@
         const ua = navigator.userAgent || navigator.vendor || window.opera;
         const mobileRegex = /Mobi|Android|iPhone|iPad|iPod|IEMobile|Windows Phone/i;
         const hasTouch = (('maxTouchPoints' in navigator && navigator.maxTouchPoints > 0) || 'ontouchstart' in window);
+        const smallScreen = window.innerWidth <= 768;
         return mobileRegex.test(ua) || hasTouch || smallScreen;
       }
 

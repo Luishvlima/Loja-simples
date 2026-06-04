@@ -29,19 +29,8 @@ async function carregarCatalogoProdutos() {
 
 document.addEventListener("DOMContentLoaded", carregarCatalogoProdutos);
 
-const btnLupa      = document.getElementById('btnLupa');
 const inputBusca   = document.getElementById('inputBusca');
 const listaSugests = document.getElementById('listaSugestoes');
-
-btnLupa.addEventListener('click', function () {
-    inputBusca.classList.toggle('ativo');
-    if (inputBusca.classList.contains('ativo')) {
-        inputBusca.focus();
-    } else {
-        inputBusca.value = '';
-        fecharSugestoes();
-    }
-});
 
 inputBusca.addEventListener('input', function () {
     const termo = this.value.trim().toLowerCase();
@@ -57,7 +46,7 @@ inputBusca.addEventListener('input', function () {
 });
 
 document.addEventListener('click', function (evento) {
-    const wrapper = document.querySelector('.busca__wrapper');
+    const wrapper = document.querySelector('.busca');
     if (!wrapper.contains(evento.target)) {
         fecharSugestoes();
     }

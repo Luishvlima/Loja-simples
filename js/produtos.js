@@ -11,6 +11,9 @@ async function carregarProdutos() {
 
   const objeto = await resposta.json();
   // Converter objeto {chave: {...}} em array [{...}, {...}]
+  // Anotar cada produto com seu slug e expor um lookup global para o carrinho
+  Object.keys(objeto).forEach(k => { objeto[k]._slug = k; });
+  window.__catalogoLookup = objeto;
 
   return Object.values(objeto);
 }
@@ -29,11 +32,15 @@ function renderizarAcoes(produto) {
   const botoes = acoesValidas
     .map((acao) => {
       if (acao.href && acao.href.trim() !== "") {
-        return `<button class="overlay__btn botao--entrar" onclick="window.location.href='${acao.href}'">${acao.texto}</button>`;
+        return `<button class="overlay__btn botao--entrar" type="button" onclick="window.location.href='${acao.href}'">${acao.texto}</button>`;
       }
 
-      // href vazio -> botão desabilitado
-      return `<button class="overlay__btn botao--entrar" disabled aria-disabled="true">${acao.texto}</button>`;
+      if (acao.texto && acao.texto.toLowerCase().includes('carrinho')) {
+        const slugSeguro = (produto._slug || '').replace(/'/g, '&#39;');
+        return `<button class="overlay__btn botao--entrar botao--carrinho" type="button" data-slug="${slugSeguro}">${acao.texto}</button>`;
+      }
+
+      return `<button class="overlay__btn botao--entrar" disabled aria-disabled="true" type="button">${acao.texto}</button>`;
     })
     .join("");
 
@@ -47,6 +54,8 @@ function renderizarAcoes(produto) {
 }
 
 function renderizarProduto(produto) {
+  // garantir que exista slug para uso nos botões
+  produto._slug = produto._slug || produto.slug || '';
   return `
     <article class="cartao-produto">
       <span class="etiqueta etiqueta--destaque etiqueta--absoluta">${produto.destaque}</span>
@@ -78,6 +87,21 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     const produtos = await carregarProdutos();
     container.innerHTML = produtos.map(renderizarProduto).join("");
+
+    container.querySelectorAll('.botao--carrinho').forEach((botao) => {
+      botao.addEventListener('click', async () => {
+        const slug = botao.getAttribute('data-slug');
+        const produto = window.__catalogoLookup && window.__catalogoLookup[slug] ? window.__catalogoLookup[slug] : {};
+
+        try {
+          await window.carrinhoAPI.adicionarAoCarrinho(slug, produto, 1);
+          alert('Adicionado ao carrinho');
+        } catch (erro) {
+          console.error(erro);
+          alert('Não foi possível adicionar ao carrinho');
+        }
+      });
+    });
   } catch (erro) {
     console.error(erro);
     container.innerHTML = "<p>Erro ao carregar os produtos.</p>";

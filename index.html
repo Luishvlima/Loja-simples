@@ -20,6 +20,8 @@
   <link rel="stylesheet" href="css/rodape.css">
   <link rel="stylesheet" href="css/busca.css">
   <link rel="stylesheet" href="css/overlay_produto.css">
+  <link rel="stylesheet" href="css/auth_menu.css">
+  <link rel="stylesheet" href="css/test.css">
 
 </head>
 
@@ -30,21 +32,46 @@
 
 <body>
 
-  <header>
-    <nav class="barra-nav">
-      <a href="#" class="barra-nav__logo">Technoblade</a>
-      <div class="barra-nav__acoes">
-    <div class="busca__wrapper">
-        <button class="barra-nav__botao-icone" id="btnLupa" aria-label="Buscar">🔍</button>
-        <input type="text" class="busca__input" id="inputBusca" placeholder="Buscar produtos...">
-        <div class="busca__sugestoes" id="listaSugestoes"></div>
+
+    <header class="cabecalho">
+
+    <div class="topo">
+        <a href="#">Início</a>
+        <a href="#">Promoções</a>
+        <a href="#">Contato</a>
+        <a href="#">Login</a>
+        <a href="#">Cadastro</a>
     </div>
-    <button class="barra-nav__botao-icone">🛒</button>
-    <a href="./cadastro/index.php" class="botao botao--cadastrar">Cadastrar-se</a>
-    <a href="./login/index.php" class="botao botao--entrar">Entrar</a>
-</div>
-    </nav>
-  </header>
+
+    <div class="principal">
+
+        <div class="barra-nav__logo">
+            Technoblade
+        </div>
+
+        <div class="centro">
+
+            <form class="busca">
+                <input type="text" class="busca__input" id="inputBusca" placeholder="Pesquisar produtos">
+                <div class="busca__sugestoes" id="listaSugestoes"></div>
+            </form>
+
+            <nav class="categorias">
+                <a href="#">Games</a>
+                <a href="#">Informática</a>
+                <a href="#">Celulares</a>
+                <a href="#">Moda</a>
+                <a href="#">Casa</a>
+            </nav>
+
+        </div>
+
+        <div class="carrinho">
+            🛒
+        </div>
+
+    </div>
+    </header>
 
 <!-- 
   Essa é uma separação visual pois
@@ -59,6 +86,7 @@
     <div class="produtos-container">
       <button class="seta" onclick="scrollProdutos(-300)">&#10094;</button>
       <div class="grade-produtos" id="listaProdutos">
+      <script src="./js/carrinho.js"></script>
       <script src="./js/produtos.js"></script>
       </div>
       <button class="seta" onclick="scrollProdutos(300)">&#10095;</button>
@@ -178,10 +206,6 @@
     </div>
     <div class="rodape__base">
     <span>© 2026 Technoblade. Todos os direitos reservados.</span>
-    <span>
-        <a href="login/index.php">Entrar</a> &nbsp;·&nbsp;
-        <a href="cadastro/index.php">Cadastrar-se</a>
-    </span>
 </div>
   </footer>
 
@@ -199,7 +223,8 @@
     }
   </script>
   <script src="js/busca.js"></script>
-  <script src="js/detectar.js"></script>
+  <script src="js/detectar.js?v=2"></script>
+  <script src="js/auth-ui.js?v=1"></script>
 
 </body>
 </html>
