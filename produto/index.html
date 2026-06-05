@@ -18,19 +18,86 @@
 
 <body>
 
-    <header>
-        <nav class="barra-nav">
-            <a href="../" class="barra-nav__logo">Technoblade</a>
-            <div class="barra-nav__acoes">
-                <div class="busca__wrapper">
-                    <button class="barra-nav__botao-icone" id="btnLupa" aria-label="Buscar">🔍</button>
-                    <input type="text" class="busca__input" id="inputBusca" placeholder="Buscar produtos...">
-                    <div class="busca__sugestoes" id="listaSugestoes"></div>
-                </div>
-                <a href="../login/" class="botao botao--entrar">Entrar</a>
-                <a id="btnVoltar" class="botao botao--entrar">Voltar</a>
+    <header class="cabecalho_desktop">
+
+    <div class="topo">
+        <div class="lado">
+            <a class="cor_branco" href="#">Início</a>
+            <a class="cor_branco" href="#">Contato</a>
+        </div>
+        <div class="lado__acoes">
+            <a class="botao botao--entrar" href="./login/">Login</a>
+            <a class="botao botao--entrar" href="./cadastro/">Cadastro</a>
+        </div>
+        
+    </div>
+
+    <div class="principal">
+
+        <div class="barra-nav__logo">
+            <a class="barra-nav__logo" href="../">Technoblade</a>
+        </div>
+
+        <div class="centro">
+
+            <form class="busca">
+                <input type="text" class="busca__input" placeholder="Pesquisar produtos">
+                <div class="busca__sugestoes"></div>
+            </form>
+
+            <nav class="categorias">
+                <a href="#produtos">Produtos</a>
+                <a href="#categorias">Categorias</a>
+                <a href="#sobre">Sobre Nós</a>
+                <a href="#contato">Contato</a>
+            </nav>
+
+        </div>
+
+        <div class="carrinho">
+            🛒
+        </div>
+        
+
+    </div>
+    
+    </header>
+
+    <header class="cabecalho_mobile">
+      <div class="topo">
+        <div class="lado">
+        </div>
+        <div class="lado__acoes">
+            <a class="botao botao--entrar" href="./login/">Login</a>
+            <a class="botao botao--entrar" href="./cadastro/">Cadastro</a>
+        </div>
+      </div>
+
+      <div class="centro">
+          <div class="topo">
+              <div class="barra-nav__logo">
+                  <a class="barra-nav__logo" href="../">Technoblade</a>
+              </div>
+              <div class="carrinho">
+                  🛒
+              </div>
+          </div>
+        <div class="principal">
+            <div class="centro">
+                <form class="busca">
+                    <input type="text" class="busca__input" placeholder="Pesquisar produtos">
+                    <div class="busca__sugestoes"></div>
+                </form>
+                <nav class="categorias">
+                    <a href="#produtos">Produtos</a>
+                    <a href="#categorias">Categorias</a>
+                    <a href="#sobre">Sobre Nós</a>
+                    <a href="#contato">Contato</a>
+                </nav>
             </div>
-        </nav>
+        </div>
+    </div>
+      
     </header>
 
     <main id="conteudoSpecs"></main>
@@ -67,15 +134,17 @@
         </div>
     </footer>
 
-    <script src="../js/busca.js"></script>
-    <script src="../js/carrinho.js"></script>
-    <script src="../js/auth-ui.js?v=1"></script>
-    <script src="../js/especificacoes.js"></script>
     <script>
-        document.getElementById("btnVoltar").addEventListener("click", () => {
-          history.back();
-        });
-    </script>
+    function scrollProdutos(valor) {
+      const container = document.getElementById("listaProdutos");
+      container.scrollLeft += valor;
+    }
+  </script>
+  <script src="./js/busca.js"></script>
+  <script src="./js/detectar.js?v=2"></script>
+  <script src="./js/auth-ui.js?v=1"></script>
+  <script src="./js/carrinho.js"></script>
+  <script src="./js/produtos.js"></script>
 
 </body>
 </html>

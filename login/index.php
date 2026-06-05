@@ -79,13 +79,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   Essa é uma separação visual pois
   tenho Problemas com a visão
 -->
-
     <header>
         <nav class="barra-nav">
             <a href="../" class="barra-nav__logo">Technoblade</a>
             <div class="barra-nav__acoes">
-                <a href="../cadastro/" class="botao botao--entrar">Cadastre-se</a>
-                <a id="btnVoltar" class="botao botao--entrar">Voltar</a>
+                <a href="../login/" class="botao botao--entrar">Entrar</a>
+                <a id="btnVoltar"class="botao botao--entrar">Voltar</a>
             </div>
         </nav>
     </header>
@@ -163,12 +162,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </footer>
 
-    <script>
-        document.getElementById("btnVoltar").addEventListener("click", () => {
-          history.back();
-        });
-    </script>
-        <script src="../js/auth-ui.js?v=1"></script>
+     <script>
+    function scrollProdutos(valor) {
+      const container = document.getElementById("listaProdutos");
+      container.scrollLeft += valor;
+    }
+  </script>
+  <script src="../js/busca.js"></script>
+  <script src="../js/detectar.js?v=2"></script>
+  <script src="../js/auth-ui.js?v=1"></script>
+  <script src="../js/carrinho.js"></script>
+  <script src="../js/produtos.js"></script>
 
 </body>
 </html>

@@ -30,19 +30,6 @@
 }
 
 /* BARRA DE NAVEGAÇÃO */
-.barra-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px;
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(12px);
-  border-bottom: 2px solid;
-  animation: rgb-border 3s linear infinite, rgb-glow 3s linear infinite;
-}
 
 .barra-nav__logo {
   font-family: 'Bebas Neue', sans-serif;
@@ -90,3 +77,235 @@
   color: #f0f0f0;
   transform: translateY(-2px);
 }
+
+.cabecalho_desktop{
+    width:100%;
+    background:#000;
+    color:white;
+}
+.cabecalho_mobile{
+    display:none;
+    width:100%;
+    background:#000;
+    color:white;
+}
+
+.topo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 20px;
+    color: white;
+    margin: 0;
+}
+
+.topo a{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.cor_branco{
+    color:white;
+}
+
+.lado{
+    display:flex;
+    gap:20px;
+}
+
+.lado__acoes{
+    display:flex;
+    gap:20px;
+}
+
+.principal{
+    display:flex;
+    align-items:center;
+    padding:30px 30px;
+    gap:30px;
+    border-bottom:2px solid #e8ff00;
+    padding-top: 0;
+}
+
+.logo{
+    font-size:32px;
+    font-weight:bold;
+}
+
+.centro{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.categorias{
+    display:flex;
+    justify-content:center;
+    gap:50px;
+}
+
+.categorias a{
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+
+}
+
+.carrinho{
+    font-size:30px;
+}
+
+
+.busca{
+    display:flex;
+    color:white;
+    position:relative;
+    width:100%;
+}
+
+.busca__input{
+    flex:1;
+    padding:12px;
+    background:#1a1a1a;
+    border:none;
+    outline:none;
+    overflow: hidden;
+    color:white;
+    border-radius: 15px;
+    border: 1px solid transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    transition: width 0.3s ease, padding 0.3s ease, border-color 0.3s ease;
+
+}
+
+/* Nome no fundo */
+.busca__input::placeholder{
+    color: white;
+    opacity: 0.8;
+}
+
+.busca__input:focus{
+    outline:none;
+    border-color: #DFFF00;
+}
+
+.busca__sugestoes {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 100%;
+    background: #111;
+    border: 1px solid #DFFF00;
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 200;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.busca__sugestoes.visivel {
+    display: block;
+}
+
+.busca__item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.busca__item:last-child {
+    border-bottom: none;
+}
+
+.busca__item:hover {
+    background: rgba(223, 255, 0, 0.07);
+}
+
+.busca__item-icone {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.busca__item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.busca__item-nome {
+    font-size: 1.25rem;
+    color: #f0f0f0;
+    font-weight: 500;
+}
+
+.busca__item-cat {
+    font-size: 0.9rem;
+    color: #666;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.busca__vazio {
+    padding: 14px 16px;
+    font-size: 0.82rem;
+    color: #555;
+    text-align: center;
+}
+
+@media (max-width: 768px){
+    .cabecalho_desktop{
+        display:none;
+    }
+
+    .cabecalho_mobile{
+        display:block;
+    }
+
+    .topo{
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .lado{
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .lado__acoes{
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .principal{
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .logo{
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .centro{
+        width: 100%;
+    }
+
+    .categorias{
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .categorias a{
+        font-size: 12px;
+    }
+} 
