@@ -33,35 +33,38 @@
 <body>
 
 
-    <header class="cabecalho">
+    <header class="cabecalho_desktop">
 
     <div class="topo">
-        <a href="#">Início</a>
-        <a href="#">Promoções</a>
-        <a href="#">Contato</a>
-        <a href="#">Login</a>
-        <a href="#">Cadastro</a>
+        <div class="lado">
+            <a class="cor_branco" href="#">Início</a>
+            <a class="cor_branco" href="#">Contato</a>
+        </div>
+        <div class="lado__acoes">
+            <a class="botao botao--entrar" href="./login/">Login</a>
+            <a class="botao botao--entrar" href="./cadastro/">Cadastro</a>
+        </div>
+        
     </div>
 
     <div class="principal">
 
         <div class="barra-nav__logo">
-            Technoblade
+            <a class="barra-nav__logo" href="../">Technoblade</a>
         </div>
 
         <div class="centro">
 
             <form class="busca">
-                <input type="text" class="busca__input" id="inputBusca" placeholder="Pesquisar produtos">
-                <div class="busca__sugestoes" id="listaSugestoes"></div>
+                <input type="text" class="busca__input" placeholder="Pesquisar produtos">
+                <div class="busca__sugestoes"></div>
             </form>
 
             <nav class="categorias">
-                <a href="#">Games</a>
-                <a href="#">Informática</a>
-                <a href="#">Celulares</a>
-                <a href="#">Moda</a>
-                <a href="#">Casa</a>
+                <a href="#produtos">Produtos</a>
+                <a href="#categorias">Categorias</a>
+                <a href="#sobre">Sobre Nós</a>
+                <a href="#contato">Contato</a>
             </nav>
 
         </div>
@@ -69,8 +72,47 @@
         <div class="carrinho">
             🛒
         </div>
+        
 
     </div>
+    
+    </header>
+
+    <header class="cabecalho_mobile">
+      <div class="topo">
+        <div class="lado">
+        </div>
+        <div class="lado__acoes">
+            <a class="botao botao--entrar" href="./login/">Login</a>
+            <a class="botao botao--entrar" href="./cadastro/">Cadastro</a>
+        </div>
+      </div>
+
+      <div class="centro">
+          <div class="topo">
+              <div class="barra-nav__logo">
+                  <a class="barra-nav__logo" href="../">Technoblade</a>
+              </div>
+              <div class="carrinho">
+                  🛒
+              </div>
+          </div>
+        <div class="principal">
+            <div class="centro">
+                <form class="busca">
+                    <input type="text" class="busca__input" placeholder="Pesquisar produtos">
+                    <div class="busca__sugestoes"></div>
+                </form>
+                <nav class="categorias">
+                    <a href="#produtos">Produtos</a>
+                    <a href="#categorias">Categorias</a>
+                    <a href="#sobre">Sobre Nós</a>
+                    <a href="#contato">Contato</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+      
     </header>
 
 <!-- 
@@ -86,8 +128,6 @@
     <div class="produtos-container">
       <button class="seta" onclick="scrollProdutos(-300)">&#10094;</button>
       <div class="grade-produtos" id="listaProdutos">
-      <script src="./js/carrinho.js"></script>
-      <script src="./js/produtos.js"></script>
       </div>
       <button class="seta" onclick="scrollProdutos(300)">&#10095;</button>
     </div>
@@ -136,7 +176,7 @@
 -->
 
 
-  <section class="secao">
+  <section class="secao" id="sobre">
     <div class="secao__cabecalho">
       <h3 class="secao__titulo secao__titulo--h3">Sobre Nós</h3>
     </div>
@@ -157,7 +197,7 @@
 -->
 
 
-  <section class="secao">
+  <section class="secao" id="contato">
     <div class="secao__cabecalho">
       <h3 class="secao__titulo secao__titulo--h3">Contato</h3>
     </div>
@@ -225,6 +265,8 @@
   <script src="js/busca.js"></script>
   <script src="js/detectar.js?v=2"></script>
   <script src="js/auth-ui.js?v=1"></script>
+  <script src="./js/carrinho.js"></script>
+  <script src="./js/produtos.js"></script>
 
 </body>
 </html>

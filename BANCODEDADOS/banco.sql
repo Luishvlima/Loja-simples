@@ -1,8 +1,8 @@
-CREATE DATABASE IF NOT EXISTS cadastrophp
+CREATE DATABASE IF NOT EXISTS DiogoMotaAraujoAlves
 CHARACTER SET utf8mb4
 COLLATE utf8mb4_unicode_ci;
 
-USE cadastrophp;
+USE DiogoMotaAraujoAlves;
 
 CREATE TABLE IF NOT EXISTS usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,

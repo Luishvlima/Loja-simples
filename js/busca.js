@@ -29,63 +29,70 @@ async function carregarCatalogoProdutos() {
 
 document.addEventListener("DOMContentLoaded", carregarCatalogoProdutos);
 
-const inputBusca   = document.getElementById('inputBusca');
-const listaSugests = document.getElementById('listaSugestoes');
+document.querySelectorAll('.busca').forEach(busca => {
 
-inputBusca.addEventListener('input', function () {
-    const termo = this.value.trim().toLowerCase();
-    if (termo.length === 0) {
-        fecharSugestoes();
-        return;
-    }
-    const resultados = catalogoProdutos.filter(function (produto) {
-        return produto.nome.toLowerCase().includes(termo)
-            || produto.categoria.toLowerCase().includes(termo);
+    const input = busca.querySelector('.busca__input');
+    const lista = busca.querySelector('.busca__sugestoes');
+
+    input.addEventListener('input', function() {
+
+        const termo = this.value.trim().toLowerCase();
+
+        if (termo.length === 0) {
+            lista.innerHTML = '';
+            lista.classList.remove('visivel');
+            return;
+        }
+
+        const resultados = catalogoProdutos.filter(produto =>
+            produto.nome.toLowerCase().includes(termo) ||
+            produto.categoria.toLowerCase().includes(termo)
+        );
+
+        renderizarSugestoes(resultados, lista);
     });
-    renderizarSugestoes(resultados);
+
 });
 
-document.addEventListener('click', function (evento) {
-    const wrapper = document.querySelector('.busca');
-    if (!wrapper.contains(evento.target)) {
-        fecharSugestoes();
-    }
+document.addEventListener('click', function(evento){
+    document.querySelectorAll('.busca').forEach(wrapper => {
+        if(!wrapper.contains(evento.target)){
+            const lista = wrapper.querySelector('.busca__sugestoes');
+            lista.innerHTML = '';
+            lista.classList.remove('visivel');
+        }
+
+    });
+
 });
 
-function renderizarSugestoes(resultados) {
-    listaSugests.innerHTML = '';
+function renderizarSugestoes(resultados, lista) {
+
+    lista.innerHTML = '';
+
     if (resultados.length === 0) {
-        listaSugests.innerHTML = '<p class="busca__vazio">Nenhum produto encontrado.</p>';
-        listaSugests.classList.add('visivel');
+        lista.innerHTML =
+            '<p class="busca__vazio">Nenhum produto encontrado.</p>';
+
+        lista.classList.add('visivel');
         return;
     }
-    const limite = resultados.slice(0, 6);
-    limite.forEach(function (produto) {
+
+    resultados.slice(0, 6).forEach(produto => {
+
         const item = document.createElement('div');
+
         item.classList.add('busca__item');
+
         item.innerHTML =
             '<span class="busca__item-icone">' + produto.icone + '</span>' +
             '<div class="busca__item-info">' +
-                '<span class="busca__item-nome">' + produto.nome + '</span>' +
-                '<span class="busca__item-cat">'  + produto.categoria  + '</span>' +
+            '<span class="busca__item-nome">' + produto.nome + '</span>' +
+            '<span class="busca__item-cat">' + produto.categoria + '</span>' +
             '</div>';
-        item.addEventListener('click', function () {
-            const emSubpasta = window.location.pathname.includes('/games/')
-                || window.location.pathname.includes('/celular/')
-                || window.location.pathname.includes('/computadores/')
-                || window.location.pathname.includes('/produto/')
-                || window.location.pathname.includes('/login/')
-                || window.location.pathname.includes('/cadastro/');
 
-            const baseProduto = emSubpasta ? '../produto/' : './produto/';
-            window.location.href = baseProduto + '?' + encodeURIComponent(produto.slug);
-        });
-        listaSugests.appendChild(item);
+        lista.appendChild(item);
     });
-    listaSugests.classList.add('visivel');
-}
 
-function fecharSugestoes() {
-    listaSugests.innerHTML = '';
-    listaSugests.classList.remove('visivel');
+    lista.classList.add('visivel');
 }

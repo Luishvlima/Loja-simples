@@ -1,20 +1,38 @@
-.cabecalho{
+.cabecalho_desktop{
+    width:100%;
+    background:#000;
+    color:white;
+}
+.cabecalho_mobile{
+    display:none;
     width:100%;
     background:#000;
     color:white;
 }
 
 .topo{
-    display:flex;
-    justify-content:flex-end;
-    gap:20px;
-    padding:10px 10px;
-    height: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 20px;
+    color: white;
+    margin: 0;
 }
 
 .topo a{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.cor_branco{
     color:white;
-    text-decoration:none;
+}
+
+.lado{
+    display:flex;
+    gap:20px;
 }
 
 .principal{
@@ -23,6 +41,7 @@
     padding:30px 30px;
     gap:30px;
     border-bottom:2px solid #e8ff00;
+    padding-top: 0;
 }
 
 .logo{
@@ -59,6 +78,7 @@
     display:flex;
     color:white;
     position:relative;
+    width:100%;
 }
 
 .busca__input{
@@ -93,7 +113,7 @@
     position: absolute;
     top: calc(100% + 8px);
     left: 0;
-    width: 280px;
+    width: 100%;
     background: #111;
     border: 1px solid #DFFF00;
     border-radius: 10px;
@@ -109,7 +129,7 @@
 .busca__item {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
     padding: 10px 16px;
     cursor: pointer;
     transition: background 0.15s ease;
@@ -125,24 +145,24 @@
 }
 
 .busca__item-icone {
-    font-size: 1.4rem;
+    font-size: 2rem;
     flex-shrink: 0;
 }
 
 .busca__item-info {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 3px;
 }
 
 .busca__item-nome {
-    font-size: 0.85rem;
+    font-size: 1.25rem;
     color: #f0f0f0;
     font-weight: 500;
 }
 
 .busca__item-cat {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     color: #666;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -154,3 +174,53 @@
     color: #555;
     text-align: center;
 }
+
+@media (max-width: 768px){
+    .cabecalho_desktop{
+        display:none;
+    }
+
+    .cabecalho_mobile{
+        display:block;
+    }
+
+    .topo{
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .lado{
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .lado__acoes{
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .principal{
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .logo{
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .centro{
+        width: 100%;
+    }
+
+    .categorias{
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .categorias a{
+        font-size: 12px;
+    }
+} 
