@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technoblade — Especificações</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/barra_nav.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/botao.css">
+    <link rel="stylesheet" href="css/busca.css">
+    <link rel="stylesheet" href="css/rodape.css">
+    <style>
+    body { padding-top: 80px; }
+    .specs__container { display: flex; gap: 60px; align-items: flex-start; padding: 60px 48px; max-width: 1100px; margin: 0 auto; }
+    .specs__midia { flex: 0 0 420px; background: #111; border: 1px solid #222; border-radius: 16px; display: flex; align-items: center; justify-content: center; padding: 24px; font-size: 9rem; position: sticky; top: 100px; height: 420px; overflow: hidden; flex-direction: column; }
+    .specs__midia > img, #imgPrincipal { width: 100%; height: 100%; object-fit: contain; flex: 1; }
+    .specs__info { flex: 1; }
+    .specs__categoria { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: #666; margin-bottom: 8px; }
+    .specs__nome { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem, 4vw, 3.5rem); letter-spacing: 0.03em; line-height: 1; margin-bottom: 16px; }
+    .specs__precos { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+    .specs__preco-novo { font-size: 2rem; font-weight: 700; color: #DFFF00; }
+    .specs__preco-antigo { font-size: 1rem; color: #444; text-decoration: line-through; }
+    .specs__badge-off { background: #ff3c00; color: #fff; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; padding: 4px 8px; border-radius: 5px; text-transform: uppercase; }
+    .specs__divisor { border: none; border-top: 1px solid #1a1a1a; margin: 24px 0; }
+    .specs__subtitulo { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.1em; color: #fff; margin-bottom: 12px; }
+    .specs__descricao { font-size: 0.9rem; color: #777; line-height: 1.8; margin-bottom: 24px; max-width: 540px; }
+    .specs__tabela { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-bottom: 32px; }
+    .specs__tabela tr { border-bottom: 1px solid #1a1a1a; }
+    .specs__tabela tr:last-child { border-bottom: none; }
+    .specs__tabela td:first-child { color: #555; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 16px 12px 0; width: 40%; vertical-align: top; }
+    .specs__tabela td:last-child { color: #ccc; padding: 12px 0; line-height: 1.6; }
+    .specs__acoes { display: flex; gap: 12px; flex-wrap: wrap; }
+    .specs__btn-primario { flex: 1; min-width: 180px; padding: 14px 24px; background: #DFFF00; color: #000; border: none; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background 0.2s ease, transform 0.2s ease; }
+    .specs__btn-primario:hover { background: #f0ff33; transform: scale(1.02); }
+    .specs__btn-secundario { flex: 1; min-width: 180px; padding: 14px 24px; background: transparent; color: #DFFF00; border: 1px solid #DFFF00; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background 0.2s ease, transform 0.2s ease; }
+    .specs__btn-secundario:hover { background: rgba(223,255,0,0.08); transform: scale(1.02); }
+    .specs__erro { text-align: center; padding: 80px 48px; color: #666; font-size: 1rem; }
+    .specs__erro span { font-size: 4rem; display: block; margin-bottom: 16px; }
+    
+    .specs__thumbs { position: absolute; bottom: 16px; display: flex; gap: 8px; justify-content: center; width: 100%; left: 0; }
+    
+    .specs__midia .specs__thumb { width: 52px !important; height: 52px !important; object-fit: contain; border-radius: 8px; border: 2px solid #333; background: #111; cursor: pointer; transition: border-color 0.2s; padding: 4px; }
+    .specs__thumb--ativa { border-color: #DFFF00 !important; }
+    .specs__thumb:hover { border-color: #888; }
+    
+    @media (max-width: 768px) {
+        .specs__container { flex-direction: column; padding: 32px 24px; gap: 32px; }
+        .specs__midia { flex: unset; width: 100%; position: static; font-size: 6rem; padding: 40px; height: auto; aspect-ratio: 1; }
+    }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="barra-nav">
+            <a href="." class="barra-nav__logo">Technoblade</a>
+            <div class="barra-nav__acoes">
+                <div class="busca__wrapper">
+                    <button class="barra-nav__botao-icone" id="btnLupa" aria-label="Buscar">🔍</button>
+                    <input type="text" class="busca__input" id="inputBusca" placeholder="Buscar produtos...">
+                    <div class="busca__sugestoes" id="listaSugestoes"></div>
+                </div>
+                <a href="./login/" class="botao botao--entrar">Entrar</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="conteudoSpecs"></main>
+
+    <footer id="rodape">
+        <div class="rodape__grade">
+            <div class="rodape__coluna">
+                <div class="rodape__marca">Technoblade</div>
+                <p class="rodape__sobre">Especialistas em periféricos gamers, computadores e acessórios de alta performance.</p>
+            </div>
+            <div class="rodape__coluna">
+                <div class="rodape__titulo">Links Rápidos</div>
+                <ul class="rodape__lista">
+                    <li><a href="."            class="rodape__link">Início</a></li>
+                    <li><a href="./index.html#produtos"   class="rodape__link">Produtos</a></li>
+                    <li><a href="./index.html#categorias" class="rodape__link">Categorias</a></li>
+                    <li><a href="./games/"                class="rodape__link">Games</a></li>
+                    <li><a href="./computadores/"         class="rodape__link">Computadores</a></li>
+                    <li><a href="./celular/"              class="rodape__link">Celulares</a></li>
+                </ul>
+            </div>
+            <div class="rodape__coluna">
+                <div class="rodape__titulo">Siga-nos</div>
+                <div class="rodape__redes">
+                    <a href="#" class="rodape__rede">Facebook</a>
+                    <a href="#" class="rodape__rede">X (Twitter)</a>
+                    <a href="#" class="rodape__rede">Instagram</a>
+                    <a href="#" class="rodape__rede">YouTube</a>
+                </div>
+            </div>
+        </div>
+        <div class="rodape__base">
+            <span>© 2026 Technoblade. Todos os direitos reservados.</span>
+            <span><a href="../login/">Entrar</a> &nbsp;·&nbsp; <a href="../cadastro/">Cadastrar-se</a></span>
+        </div>
+    </footer>
+
+    <script src="js/busca.js"></script>
+    <script>
+        
+    var catalogo = {
+        'headset-pro-71': { imagens:['img/Headset 7.png', 'img/imgHeadset 7.png2.png'], nome:'Headset Pro 7.1', categoria:'Áudio', preco:'R$ 459,90', precoAntigo:'R$ 679,90', desconto:'25% off', descricao:'O Headset Pro 7.1 foi desenvolvido para jogadores que exigem imersão total. Com drivers de 50mm e tecnologia de som surround virtual 7.1, cada detalhe do ambiente sonoro é reproduzido com fidelidade. Almofadas de espuma com memória garantem conforto mesmo em longas sessões.', specs:[['Drivers','50mm Neodímio'],['Frequência','20Hz – 20.000Hz'],['Impedância','32 Ohms'],['Microfone','Unidirecional removível'],['Conexão','USB + P2 3.5mm'],['Compatibilidade','PC, PS4, PS5, Xbox, Switch'],['Peso','320g'],['Garantia','12 meses']] },
+        'positivo-vision': { imagens:['img/Positivo VisionV1.png', 'img/imgnotebook-positivo-2.png'], nome:'Positivo Vision', categoria:'Notebook', preco:'R$ 2.849,00', precoAntigo:'R$ 3.750,00', desconto:'25% off', descricao:'O Positivo Vision é a escolha ideal para quem busca desempenho e custo-benefício. Com processador moderno e tela Full HD, atende desde tarefas do dia a dia até projetos mais exigentes.', specs:[['Processador','Intel Core i5 12ª Geração'],['Memória RAM','8GB DDR4'],['Armazenamento','SSD 256GB'],['Tela','15,6" Full HD'],['Sistema','Windows 11 Home'],['Bateria','Até 8 horas'],['Peso','1,8kg'],['Garantia','12 meses']] },
+        'smartphone-z15': { imagens:['img/Smartphone Z15.png', 'img/Smartphone Z15.2.png'], nome:'Smartphone Z15', categoria:'Mobile', preco:'R$ 1.875,00', precoAntigo:'R$ 2.500,00', desconto:'25% off', descricao:'O Smartphone Z15 combina design moderno com hardware de ponta. Câmera tripla de alta resolução, bateria de longa duração e carregamento rápido tornam este aparelho o companheiro perfeito para o dia a dia.', specs:[['Processador','Octa-core 2.4GHz'],['RAM','8GB'],['Armazenamento','128GB (expansível)'],['Tela','6,5" AMOLED 120Hz'],['Câmera traseira','64MP + 12MP + 5MP'],['Câmera frontal','32MP'],['Bateria','5000mAh'],['Garantia','12 meses']] },
+        'monitor-4k-144hz': { imagens:['img/Monitor 4K.png', 'img/Monitor 4K.2.png'], nome:'Monitor 4K 144Hz', categoria:'Monitor', preco:'R$ 2.099,00', precoAntigo:'R$ 2.800,00', desconto:'25% off', descricao:'Experimente imagens nítidas e fluidas. Ideal para jogos e trabalho criativo, oferece cores vibrantes, tempo de resposta ultrarrápido e cobertura de 95% do espaço de cor DCI-P3.', specs:[['Resolução','3840 x 2160 (4K UHD)'],['Taxa de atualização','144Hz'],['Tempo de resposta','1ms (GtG)'],['Painel','IPS'],['Tamanho','27 polegadas'],['Conexões','2x HDMI 2.1, 1x DisplayPort 1.4'],['HDR','HDR400'],['Garantia','12 meses']] },
+        'teclado-rgb-x': { imagens:['img/TecladoRGB.png', 'img/TecladoRGB2.png'], nome:'Teclado RGB X', categoria:'Teclado', preco:'R$ 389,90', precoAntigo:'R$ 760,00', desconto:'18% off', descricao:'Teclado mecânico gamer com switches de alta durabilidade e iluminação RGB personalizável por tecla. Anti-ghosting total para garantir que nenhum comando seja perdido.', specs:[['Switch','Blue Mecânico'],['Iluminação','RGB por tecla'],['Anti-ghosting','Full (100%)'],['Conexão','USB-A'],['Layout','ABNT2'],['Teclas','104 teclas'],['Cabo','Removível trançado 1,8m'],['Garantia','12 meses']] },
+        'mouse-gamer-pro': { imagens:['img/MouseProGamer.png', 'img/MouseProGamer2.png'], nome:'Mouse Gamer Pro', categoria:'Mouse', preco:'R$ 179', precoAntigo:'R$ 250', desconto:'15% off', descricao:'Precisão máxima com sensor óptico de 16.000 DPI ajustável. Design ergonômico, 7 botões programáveis e iluminação RGB fazem dele o aliado perfeito para qualquer jogo.', specs:[['Sensor','Óptico 16.000 DPI'],['Botões','7 programáveis'],['Iluminação','RGB 16,8 milhões de cores'],['Conexão','USB-A'],['Polling rate','1000Hz'],['Peso','95g'],['Cabo','Trançado 1,8m'],['Garantia','12 meses']] },
+        'controle-x-pro': { imagens:['img/ControleXPro.png', 'img/ControleXP2.png'], nome:'Controle X-Pro', categoria:'Games', preco:'R$ 520,00', precoAntigo:'R$ 670,00', desconto:'20% off', descricao:'Gatilhos adaptáveis, vibração háptica e bateria de longa duração para sessões intensas de jogo.', specs:[['Conexão','Bluetooth 5.0 + USB-C'],['Bateria','1500mAh — até 20h'],['Vibração','Háptica de dupla zona'],['Gatilhos','Adaptáveis com feedback'],['Compatibilidade','PC, PS4, Android, iOS'],['Peso','210g'],['Cabo','USB-C incluso'],['Garantia','12 meses']] },
+        'cadeira-elite': { imagens:['img/CadeiraElite.png', 'img/CadeiraElite2.png'], nome:'Cadeira Elite', categoria:'Cadeira', preco:'R$ 999,00', precoAntigo:'R$ 1.299,00', desconto:'12% off', descricao:'Espuma de alta densidade, apoio lombar ajustável e braços 4D garantem conforto e ergonomia para gamers e profissionais.', specs:[['Material','Couro PU Premium'],['Espuma','Alta densidade 50kg/m³'],['Apoio lombar','Ajustável'],['Braços','4D ajustáveis'],['Inclinação','Até 155°'],['Altura','Ajustável por pistão a gás'],['Carga máxima','150kg'],['Garantia','12 meses']] },
+        'gabinete-gamer': { imagens:['img/GabineteGamer.png', 'img/GabineteGamer2.png'], nome:'Gabinete Gamer', categoria:'Computadores', preco:'R$ 590,00', precoAntigo:'R$ 980,00', desconto:'10% off', descricao:'Estética agressiva com excelente fluxo de ar. Painel lateral em vidro temperado, suporte a water cooler e iluminação ARGB integrada.', specs:[['Formato','Mid Tower ATX'],['Painel lateral','Vidro temperado 4mm'],['Fans inclusos','3x 120mm ARGB'],['Suporte radiador','Até 360mm (frontal)'],['Baias 3,5"','2 internas'],['Baias 2,5"','3 internas'],['Conectores front','USB 3.0, USB-C, HD Audio'],['Garantia','12 meses']] },
+        'webcam-hd': { imagens:['img/Webcam.png', 'img/Webcam2.png'], nome:'Webcam HD', categoria:'Webcam', preco:'R$ 590,00', precoAntigo:'R$ 750,00', desconto:'8% off', descricao:'Imagem nítida e profissional para streams e videochamadas. Microfone estéreo embutido com cancelamento de ruído e ajuste automático de luz.', specs:[['Resolução','1080p Full HD 60fps'],['Campo de visão','90°'],['Microfone','Estéreo com cancelamento de ruído'],['Foco','Automático'],['Conexão','USB-A'],['Compatibilidade','Windows, macOS, Linux'],['Cabo','1,5m'],['Garantia','12 meses']] },
+        'arcade-mini': { imagens:['img/ArcadeMini.png', 'img/ArcadeMini2.png'], nome:'Arcade Mini', categoria:'Arcade', preco:'R$ 2.150,00', precoAntigo:'R$ 2.690,00', desconto:'17% off', descricao:'Console retrô compacto com mais de 10.000 jogos clássicos pré-instalados. Controles arcade estilo stick e saída HDMI para jogar na TV.', specs:[['Jogos','+10.000 pré-instalados'],['Tela','Saída HDMI até 4K'],['Controles','2x joystick arcade incluso'],['Armazenamento','64GB interno'],['Processador','Quad-core 1.8GHz'],['Saídas','HDMI + USB + Wi-Fi'],['Bateria','3000mAh (portátil)'],['Garantia','12 meses']] },
+        'ssd-1tb': { imagens:['img/SSD1T.png', 'img/SSD1T(2).png'], nome:'SSD 1TB', categoria:'Armazenamento', preco:'R$ 1.250,00', precoAntigo:'R$ 1.350,00', desconto:'14% off', descricao:'Velocidades de leitura e escrita que eliminam os tempos de carregamento. Compatível com PCIe 4.0 para o máximo desempenho em PCs e consoles.', specs:[['Capacidade','1TB'],['Interface','PCIe 4.0 NVMe M.2'],['Leitura sequencial','Até 7.000 MB/s'],['Escrita sequencial','Até 6.500 MB/s'],['Formato','M.2 2280'],['TBW','600 TBW'],['MTBF','1.500.000 horas'],['Garantia','5 anos']] },
+        'roteador-ax': { imagens:['img/RoteadorAx.png', 'img/RoteadorAx2.png'], nome:'Roteador AX', categoria:'Internet', preco:'R$ 590,00', precoAntigo:'R$ 890,00', desconto:'13% off', descricao:'Wi-Fi 6 com conexão ultrarrápida e estável para toda a casa. Ideal para gamers e streamers que precisam de baixa latência e alta velocidade.', specs:[['Padrão','Wi-Fi 6 (802.11ax)'],['Velocidade','AX3000 (2.4GHz + 5GHz)'],['Portas LAN','4x Gigabit Ethernet'],['Porta WAN','1x Gigabit'],['Antenas','4 externas de alta ganho'],['Cobertura','Até 150m²'],['Segurança','WPA3'],['Garantia','12 meses']] },
+        'powerbank-pro': { imagens:['img/PowerBankPro.png', 'img/PowerBankPro2.png'], nome:'PowerBank Pro', categoria:'Energia', preco:'R$ 1.250,00', precoAntigo:'R$ 1.769,90', desconto:'10% off', descricao:'20.000mAh e carregamento rápido 65W. Recarrega notebooks, celulares e tablets com a potência que você precisa.', specs:[['Capacidade','20.000mAh'],['Potência máxima','65W'],['Entradas','USB-C PD + Micro-USB'],['Saídas','2x USB-A + 1x USB-C'],['Carregamento rápido','PD 3.0 + QC 4.0'],['Compatível com','Notebooks, celulares, tablets'],['Peso','420g'],['Garantia','12 meses']] },
+        'watch-gamer': { imagens:['img/WatchGamer.png', 'img/WatchGamer2.png'], nome:'Watch Gamer', categoria:'Smartwatch', preco:'R$ 1.190,00', precoAntigo:'R$ 1.350,00', desconto:'21% off', descricao:'Monitor cardíaco, GPS integrado, notificações inteligentes e resistência à água para usar em qualquer situação.', specs:[['Tela','AMOLED 1,4" 454x454px'],['Processador','Dual-core 1.2GHz'],['Memória','32MB RAM + 4GB'],['Bateria','Até 7 dias'],['GPS','Integrado'],['Resistência','5ATM (50m)'],['Sensores','HR, SpO2, acelerômetro, giroscópio'],['Garantia','12 meses']] },
+        'controle-pro-x': { imagens:['img/ControlPro.png', 'img/ControlPro2.png'], nome:'Controle Pro X', categoria:'Games', preco:'R$ 319', precoAntigo:'R$ 429', desconto:'20% off', descricao:'Botões de resposta rápida, gatilhos mecânicos e grip antiderrapante para o máximo controle nas partidas mais intensas.', specs:[['Conexão','USB-C + Bluetooth 5.0'],['Bateria','1200mAh — até 15h'],['Vibração','Duplo motor'],['Gatilhos','Mecânicos ajustáveis'],['Compatibilidade','PC, Android, iOS'],['Peso','195g'],['Cabo','USB-C 1,5m incluso'],['Garantia','12 meses']] },
+        'teclado-mecanico-x': { imagens:['img/tecladoMecX.png', 'img/TecladoMecX2.png'], nome:'Teclado Mecânico X', categoria:'Games', preco:'R$ 279', precoAntigo:'R$ 399', desconto:'15% off', descricao:'Switches Red lineares para respostas rápidas e silenciosas, com iluminação RGB por zona.', specs:[['Switch','Red Linear'],['Iluminação','RGB por zona'],['Anti-ghosting','N-Key Rollover'],['Conexão','USB-A destacável'],['Layout','ABNT2 TKL (87 teclas)'],['Vida útil','50 milhões de acionamentos'],['Cabo','Trançado 1,8m'],['Garantia','12 meses']] },
+        'mouse-rgb-fury': { imagens:['img/MouseFury.png', 'img/MouseFury2.png'], nome:'Mouse RGB Fury', categoria:'Games', preco:'R$ 189', precoAntigo:'R$ 259', desconto:'18% off', descricao:'Sensor de 12.000 DPI com rastreamento a 1000Hz e design ambidestro para conforto em longas sessões de jogo.', specs:[['Sensor','Óptico 12.000 DPI'],['Botões','6 programáveis'],['Iluminação','RGB 3 zonas'],['Polling rate','1000Hz'],['Peso','78g (sem cabo)'],['Cabo','Paracord 1,8m'],['Pés','PTFE 100% virgem'],['Garantia','12 meses']] },
+        'cadeira-gamer-pro': { imagens:['img/CadeiraGPro.png', 'img/CadeiraGPro2.png'], nome:'Cadeira Gamer Pro', categoria:'Games', preco:'R$ 1.299', precoAntigo:'R$ 1.599', desconto:'10% off', descricao:'Suporte de pescoço e lombar inclusos, reclinação ampla e base de alumínio reforçada para sessões prolongadas.', specs:[['Material','Tecido respirável + PU'],['Almofadas','Pescoço e lombar inclusos'],['Inclinação','Até 165°'],['Braços','3D ajustáveis'],['Base','Alumínio polido'],['Rodízios','PU silencioso 60mm'],['Carga máxima','160kg'],['Garantia','12 meses']] },
+        'headset-storm-71': { imagens:['img/HeadsetStorm.png', 'img/HeadsetStorm2.png'], nome:'Headset Storm 7.1', categoria:'Games', preco:'R$ 349', precoAntigo:'R$ 499', desconto:'22% off', descricao:'Som surround imersivo com drivers de 53mm e graves potentes. Almofadas de couro sintético e microfone retrátil com cancelamento de ruído.', specs:[['Drivers','53mm Neodímio'],['Resposta de frequência','20Hz – 20.000Hz'],['Som surround','7.1 Virtual'],['Microfone','Retrátil com cancelamento de ruído'],['Conexão','USB + P2 3.5mm'],['Iluminação','RGB nas orelhas'],['Peso','340g'],['Garantia','12 meses']] },
+        'notebook-titan-i7': { imagens:['img/NotebookTitan.png', 'img/NotebookTitan2.png'], nome:'Notebook Titan i7', categoria:'Computadores', preco:'R$ 4.799', precoAntigo:'R$ 5.499', desconto:'12% off', descricao:'Processador Intel Core i7 de última geração, placa de vídeo dedicada e tela IPS de alta resolução para profissionais e gamers.', specs:[['Processador','Intel Core i7-12700H'],['Placa de vídeo','NVIDIA RTX 3060 6GB'],['RAM','16GB DDR5 4800MHz'],['Armazenamento','SSD NVMe 512GB'],['Tela','15,6" Full HD 144Hz IPS'],['Bateria','Até 6 horas'],['Sistema','Windows 11 Home'],['Garantia','12 meses']] },
+        'notebook-fury-z15': { imagens:['img/NotebookFury.png', 'img/NotebookFury2.png'], nome:'Notebook Fury Z15', categoria:'Computadores', preco:'R$ 6.199', precoAntigo:'R$ 7.000', desconto:'11% off', descricao:'RTX 4070 e processador AMD Ryzen 9. Domina tanto jogos AAA quanto edição de vídeo em 4K.', specs:[['Processador','AMD Ryzen 9 7945HX'],['Placa de vídeo','NVIDIA RTX 4070 8GB'],['RAM','32GB DDR5 5200MHz'],['Armazenamento','SSD NVMe 1TB PCIe 4.0'],['Tela','15,6" QHD 240Hz IPS'],['Bateria','Até 5 horas'],['Sistema','Windows 11 Pro'],['Garantia','12 meses']] },
+        'mouse-gamer-pro-comp': { imagens:['img/Erro.png', 'img/Erro.png'], nome:'Mouse Gamer Pro', categoria:'Computadores', preco:'R$ 179', precoAntigo:'R$ 250', desconto:'15% off', descricao:'Sensor óptico de 16.000 DPI, 7 botões programáveis e iluminação RGB para máxima precisão.', specs:[['Sensor','Óptico 16.000 DPI'],['Botões','7 programáveis'],['Iluminação','RGB 16,8 milhões de cores'],['Conexão','USB-A'],['Polling rate','1000Hz'],['Peso','95g'],['Cabo','Trançado 1,8m'],['Garantia','12 meses']] },
+        'teclado-mecanico-rgb': { imagens:['img/TecladoMecRGB.png', 'img/TecladoMecRGB2.png'], nome:'Teclado Mecânico RGB', categoria:'Computadores', preco:'R$ 279', precoAntigo:'R$ 380', desconto:'18% off', descricao:'Switches Brown tácteis para digitação precisa e iluminação RGB totalmente personalizável.', specs:[['Switch','Brown Tátil'],['Iluminação','RGB por tecla'],['Anti-ghosting','N-Key Rollover'],['Conexão','USB-A'],['Layout','ABNT2 Full (104 teclas)'],['Vida útil','50 milhões de acionamentos'],['Cabo','Trançado destacável 1,8m'],['Garantia','12 meses']] },
+        'ssd-nvme-1tb': { imagens:['img/SSDNVMe.png', 'img/SSDNVMe2.png'], nome:'SSD NVMe 1TB', categoria:'Computadores', preco:'R$ 499', precoAntigo:'R$ 680', desconto:'26% off', descricao:'A atualização que seu PC precisa. Velocidades que eliminam travamentos e tempos de carregamento.', specs:[['Capacidade','1TB'],['Interface','PCIe 4.0 NVMe M.2'],['Leitura sequencial','Até 7.000 MB/s'],['Escrita sequencial','Até 6.500 MB/s'],['Formato','M.2 2280'],['TBW','600 TBW'],['MTBF','1.500.000 horas'],['Garantia','5 anos']] },
+        'monitor-4k-comp': { imagens:['img/Erro.png', 'img/Erro.png'], nome:'Monitor 4K 144Hz', categoria:'Computadores', preco:'R$ 2.099', precoAntigo:'R$ 2.800', desconto:'25% off', descricao:'Resolução 4K com taxa de 144Hz. Painel IPS com cobertura de 95% DCI-P3 para cores precisas.', specs:[['Resolução','3840 x 2160 (4K UHD)'],['Taxa de atualização','144Hz'],['Tempo de resposta','1ms'],['Painel','IPS Anti-reflexo'],['Tamanho','27 polegadas'],['Conexões','2x HDMI 2.1, 1x DisplayPort 1.4'],['HDR','HDR600'],['Garantia','12 meses']] },
+        'smartphone-z20': { imagens:['img/SmartphoneZ20.png', 'img/SmartphoneZ20(2).png'], nome:'Smartphone Z20', categoria:'Celulares', preco:'R$ 2.299', precoAntigo:'R$ 2.899', desconto:'20% off', descricao:'Evolução do Z15 com tela maior, câmera aprimorada e bateria mais potente para quem exige o melhor.', specs:[['Processador','Octa-core 3.0GHz'],['RAM','12GB'],['Armazenamento','256GB (expansível)'],['Tela','6,7" AMOLED 144Hz'],['Câmera traseira','108MP + 12MP + 5MP'],['Câmera frontal','50MP'],['Bateria','5500mAh + Carregamento 67W'],['Garantia','12 meses']] },
+        'phone-lite': { imagens:['img/PhoneLite.png', 'img/PhoneLite2.png'], nome:'Phone Lite', categoria:'Celulares', preco:'R$ 1.499', precoAntigo:'R$ 1.799', desconto:'16% off', descricao:'Bom desempenho sem gastar muito. Bateria de longa duração, câmera eficiente e tela 90Hz.', specs:[['Processador','Hexa-core 2.0GHz'],['RAM','6GB'],['Armazenamento','128GB (expansível)'],['Tela','6,5" IPS LCD 90Hz'],['Câmera traseira','50MP + 8MP + 2MP'],['Câmera frontal','16MP'],['Bateria','5000mAh + Carregamento 33W'],['Garantia','12 meses']] },
+        'smartphone-ultra-x': { imagens:['img/SmartphoneUltra.png', 'img/SmartphoneUltra2.png'], nome:'Smartphone Ultra X', categoria:'Celulares', preco:'R$ 3.299', precoAntigo:'R$ 4.200', desconto:'21% off', descricao:'Topo de linha com chip de última geração, câmera periscópio com zoom de 100x e carregamento sem fio de 50W.', specs:[['Processador','Snapdragon 8 Gen 3'],['RAM','16GB LPDDR5'],['Armazenamento','512GB UFS 4.0'],['Tela','6,8" LTPO AMOLED 1-120Hz'],['Câmera traseira','200MP + 50MP + 12MP periscópio'],['Câmera frontal','50MP'],['Bateria','5000mAh + Carregamento 100W'],['Garantia','12 meses']] },
+        'tablet-pro-11': { imagens:['img/TabletPro.png', 'img/TabletPro2.png'], nome:'Tablet Pro 11"', categoria:'Celulares', preco:'R$ 2.149', precoAntigo:'R$ 2.800', desconto:'23% off', descricao:'Poderoso o suficiente para substituir o notebook. Tela OLED, suporte a caneta stylus e chip de alto desempenho.', specs:[['Processador','Octa-core 2.8GHz'],['RAM','8GB'],['Armazenamento','256GB'],['Tela','11" OLED 2K 120Hz'],['Câmera traseira','13MP'],['Câmera frontal','12MP wide'],['Bateria','8000mAh'],['Garantia','12 meses']] },
+        'smartwatch-fit-pro': { imagens:['img/SmartwatchFit.png', 'img/SmartwatchFit2.png'], nome:'Smartwatch Fit Pro', categoria:'Celulares', preco:'R$ 699', precoAntigo:'R$ 950', desconto:'26% off', descricao:'Monitora sua saúde em tempo real. GPS integrado, mais de 100 modos esportivos e tela sempre visível.', specs:[['Tela','AMOLED 1,5" Always-On'],['GPS','Dual-band integrado'],['Sensores','HR, SpO2, temperatura, stress'],['Modos esportivos','+100 modalidades'],['Bateria','Até 14 dias'],['Resistência','5ATM + IP69K'],['Compatibilidade','Android 7+ / iOS 12+'],['Garantia','12 meses']] },
+        'carregador-turbo-65w': { imagens:['img/CarregadorTurbo.png', 'img/CarregadorTurbo2.png'], nome:'Carregador Turbo 65W', categoria:'Celulares', preco:'R$ 149', precoAntigo:'R$ 200', desconto:'25% off', descricao:'Recarrega celulares, tablets e notebooks com velocidade máxima. Tecnologia GaN compacta com cabo USB-C incluso.', specs:[['Potência','65W máximo'],['Portas','1x USB-C + 1x USB-A'],['Protocolos','PD 3.0, QC 4.0, PPS'],['Tecnologia','GaN (Nitreto de Gálio)'],['Tensão entrada','100-240V universal'],['Cabo incluso','USB-C 1m'],['Peso','68g'],['Garantia','12 meses']] }
+    };
+
+    var params  = new URLSearchParams(window.location.search);
+    var slug    = params.get('produto');
+    var main    = document.getElementById('conteudoSpecs');
+    var rodape  = document.getElementById('rodape');
+
+    if (!slug) {
+        window.location.href = 'index.html';
+    } else {
+        var produto = catalogo[slug];
+
+        if (!produto) {
+            rodape.style.display = 'none';
+            main.innerHTML =
+                '<div class="specs__erro"><span>🔍</span>Produto não encontrado.<br>' +
+                '<a href="index.html" style="color:#DFFF00;">Voltar para a loja</a></div>';
+        } else {
+            var linhas = produto.specs.map(function(s) {
+                return '<tr><td>' + s[0] + '</td><td>' + s[1] + '</td></tr>';
+            }).join('');
+
+            var conteudoMidia = '';
+            if (produto.imagens) {
+                var miniaturas = produto.imagens.map(function(src, i) {
+                    return '<img src="' + src + '" class="specs__thumb' + (i === 0 ? ' specs__thumb--ativa' : '') + '" onclick="trocarImagem(this, \'' + src + '\')">';
+                }).join('');
+                conteudoMidia = '<img src="' + produto.imagens[0] + '" id="imgPrincipal" alt="' + produto.nome + '" style="width:100%;height:100%;object-fit:contain;margin-bottom:20px;">' +
+                               '<div class="specs__thumbs">' + miniaturas + '</div>';
+            } else if (produto.imagem) {
+                conteudoMidia = '<img src="' + produto.imagem + '" alt="' + produto.nome + '">';
+            } else {
+                conteudoMidia = produto.emoji;
+            }
+
+            main.innerHTML =
+                '<div class="specs__container">' +
+                    '<div class="specs__midia">' + conteudoMidia + '</div>' +
+                    '<div class="specs__info">' +
+                        '<div class="specs__categoria">' + produto.categoria + '</div>' +
+                        '<h1 class="specs__nome">' + produto.nome + '</h1>' +
+                        '<div class="specs__precos">' +
+                            '<span class="specs__preco-novo">' + produto.preco + '</span>' +
+                            '<span class="specs__preco-antigo">' + produto.precoAntigo + '</span>' +
+                            '<span class="specs__badge-off">' + produto.desconto + '</span>' +
+                        '</div>' +
+                        '<hr class="specs__divisor">' +
+                        '<h2 class="specs__subtitulo">Sobre o Produto</h2>' +
+                        '<p class="specs__descricao">' + produto.descricao + '</p>' +
+                        '<hr class="specs__divisor">' +
+                        '<h2 class="specs__subtitulo">Especificações Técnicas</h2>' +
+                        '<table class="specs__tabela"><tbody>' + linhas + '</tbody></table>' +
+                        '<div class="specs__acoes">' +
+                            '<button class="specs__btn-primario">🛒 Adicionar ao Carrinho</button>' +
+                            '<button class="specs__btn-secundario">⚡ Comprar Agora</button>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>';
+        }
+    }
+
+    function trocarImagem(thumb, src) {
+        document.getElementById('imgPrincipal').src = src;
+        document.querySelectorAll('.specs__thumb').forEach(function(t) {
+            t.classList.remove('specs__thumb--ativa');
+        });
+        thumb.classList.add('specs__thumb--ativa');
+    }
+
+    </script>
+
+</body>
+</html>
